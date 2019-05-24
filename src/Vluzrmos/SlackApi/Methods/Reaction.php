@@ -6,7 +6,7 @@ use Vluzrmos\SlackApi\Contracts\SlackReaction;
 
 class Reaction extends SlackMethod implements SlackReaction
 {
-    protected $methodsGroup = 'reaction.';
+    protected $methodsGroup = 'reactions.';
 
     /**
      * This method deletes a message from a channel.
@@ -15,13 +15,13 @@ class Reaction extends SlackMethod implements SlackReaction
      *
      * @param string     $channel Channel containing the message to be deleted.
      * @param int|string $name    Reaction (emoji) name.
-     * @param int|string $ts      Timestamp of the message to be deleted.
+     * @param int|string $timestamp      Timestamp of the message to be deleted.
      *
      * @return array
      */
-    public function remove($channel, $name, $ts)
+    public function remove($channel, $name, $timestamp)
     {
-        return $this->method('delete', compact('channel', 'ts'));
+        return $this->method('delete', compact('channel', 'timestamp'));
     }
 
     /**
@@ -31,7 +31,7 @@ class Reaction extends SlackMethod implements SlackReaction
      *
      * @param string $channel Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.
      * @param string $name Reaction (emoji) name.
-     * @param int|string $ts Timestamp of the message to be updated.
+     * @param int|string $timestamp Timestamp of the message to be updated.
      * @param array $options
      *
      * @example
@@ -50,9 +50,9 @@ class Reaction extends SlackMethod implements SlackReaction
      *</pre>
      * @return array
      */
-    public function add($channel, $name, $ts, $options = [])
+    public function add($channel, $name, $timestamp, $options = [])
     {
-        return $this->method('add', array_merge(compact('channel', 'name','ts'), $options));
+        return $this->method('add', array_merge(compact('channel', 'name','timestamp'), $options));
     }
 
 
@@ -75,12 +75,12 @@ class Reaction extends SlackMethod implements SlackReaction
      *
      * @param string $channel Channel containing the message to be updated.
      * @param string $text New text for the message, using the default formatting rules.
-     * @param int|string $ts Timestamp of the message to be updated.
+     * @param int|string $timestamp Timestamp of the message to be updated.
      *
      * @return array
      */
-    public function get($channel, $text, $ts)
+    public function get($channel, $text, $timestamp)
     {
-        return $this->method('update', compact('channel', 'text', 'ts'));
+        return $this->method('update', compact('channel', 'text', 'timestamp'));
     }
 }
